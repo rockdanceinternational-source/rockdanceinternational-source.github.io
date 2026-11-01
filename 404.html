@@ -1,0 +1,11 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Not found · Rock Dance International</title><link rel="stylesheet" href="/style.eac0e6816b.css"><script>
+(function () {
+  var p = location.pathname, l = p.toLowerCase(), fin = location.search + location.hash;
+  if (!/\.[a-z0-9]+$/.test(l) && l.slice(-1) !== "/") l += "/";
+  var r = {"/people/king-uprock/": "/people/", "/crews/dynasty-rockers/": "/crews/"};
+  if (r[l]) return location.replace(r[l] + fin);
+  var m = l.match(/^\/(es|pt-br|fr|it|de|pl|cs|ru|ja|ko|zh-hans)(\/.*)$/);
+  if (m) return location.replace(m[2] + fin);
+  if (l !== p) location.replace(l + fin);
+})();
+</script></head><body><main class="wrap legal"><h1>Page not found</h1><p><a href="/">Back to Rock Dance International</a></p></main></body></html>
