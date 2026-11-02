@@ -1,0 +1,19 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rock Dance International//Event 2027//EN
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:rdi-2027@rockdanceinternational.com
+DTSTAMP:20261102T000000Z
+DTSTART;VALUE=DATE:20271120
+DTEND;VALUE=DATE:20271121
+SUMMARY:Rock Dance International 2027 - Save the date
+LOCATION:Spain
+DESCRIPTION:Date reminder for the Up Rock event in Spain.\nVenue\,
+  timetable\, prices and registration: more info coming soon.\n
+ This reminder does not reserve a place. Check the event page
+  before making travel plans.
+URL:https://rockdanceinternational.com/event-2027/
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR
