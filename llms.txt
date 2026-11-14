@@ -26,5 +26,9 @@ A jerk is counted 1, 2, 3 and 4. Rockers dance to Funk and Soul, face to face wi
 ## Languages
 
 - [English](https://rockdanceinternational.com/)
+- [Español](https://rockdanceinternational.com/es/)
+- [Русский](https://rockdanceinternational.com/ru/)
+- [Polski](https://rockdanceinternational.com/pl/)
+- [日本語](https://rockdanceinternational.com/ja/)
 
 Contact: rockdanceinternational@gmail.com
