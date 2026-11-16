@@ -107,3 +107,59 @@ if (alta && window.fetch && window.AbortController) {
     aviso.focus();
   });
 }
+
+// Barra «Join» en móvil: se esconde mientras el formulario está a la vista; quien la cierra no la vuelve a ver en esta página.
+const barra = document.querySelector('.joinbar');
+if (barra) {
+  const cerrar = barra.querySelector('button');
+  cerrar.hidden = false;
+  cerrar.addEventListener('click', () => {
+    barra.remove();
+    document.getElementById('main').focus({ preventScroll: true });
+  });
+  const formulario = document.getElementById('newsletter');
+  if (formulario && window.IntersectionObserver) {
+    new IntersectionObserver(([v]) => barra.classList.toggle('is-hidden', v.isIntersecting)).observe(formulario);
+  }
+}
+
+// Sugerencia de idioma (Moi, 16/11): si el navegador prefiere otra lengua publicada de esta página, un aviso en esa lengua; nunca redirige.
+(() => {
+  const opciones = [...document.querySelectorAll('.lang li a[hreflang][data-suggest]')];
+  const actual = opciones.find(a => a.hasAttribute('aria-current'));
+  if (!actual) return;
+  try { if (localStorage.getItem('rdi-lang-hint') === 'no') return; } catch {}
+  const clave = t => {
+    t = (t || '').toLowerCase();
+    if (t.startsWith('zh')) return /-(tw|hk|mo|hant)/.test(t) ? 'zh-hant' : 'zh-hans';
+    return t.split('-')[0];
+  };
+  for (const pref of navigator.languages || [navigator.language]) {
+    const destino = opciones.find(a => clave(a.hreflang) === clave(pref));
+    if (!destino) continue;
+    if (destino === actual || !document.querySelector(`link[rel="alternate"][hreflang="${destino.hreflang}"]`)) return;
+    const caja = document.createElement('aside');
+    caja.className = 'langhint';
+    caja.lang = destino.hreflang;
+    caja.setAttribute('aria-label', destino.dataset.suggest);
+    const texto = document.createElement('p');
+    texto.textContent = destino.dataset.suggest;
+    const ir = document.createElement('a');
+    ir.href = destino.getAttribute('href');
+    ir.hreflang = destino.hreflang;
+    ir.textContent = destino.dataset.go;
+    const cerrar = document.createElement('button');
+    cerrar.type = 'button';
+    cerrar.setAttribute('aria-label', destino.dataset.close);
+    cerrar.innerHTML = '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+    cerrar.addEventListener('click', () => {
+      caja.remove();
+      try { localStorage.setItem('rdi-lang-hint', 'no'); } catch {}
+    });
+    caja.append(texto, ir, cerrar);
+    // tira fina arriba del todo, dentro del flujo y tras el enlace de salto: no tapa nada (Moi, 16/11)
+    const salto = document.querySelector('.skip');
+    if (salto) salto.after(caja); else document.body.prepend(caja);
+    return;
+  }
+})();
