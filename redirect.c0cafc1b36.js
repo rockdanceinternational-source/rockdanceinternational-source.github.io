@@ -5,7 +5,7 @@
     if (destino.origin === location.origin && destino.href !== location.href) location.replace(destino.href);
   }
   if (!/\.[a-z0-9]+$/.test(l) && l.slice(-1) !== "/") l += "/";
-  var r = {"/people/king-uprock/": "/people/", "/crews/dynasty-rockers/": "/crews/"};
+  var r = {"/people/king-uprock/": "/people/", "/crews/dynasty-rockers/": "/crews/", "/crews/colombian-rockers/": "/crews/"};
   if (r[l]) return ir(r[l]);
   var m = l.match(/^\/(es|pt-br|fr|it|de|pl|cs|ru|ja|ko|zh-hans)(\/.*)$/);
   if (m) return ir(r[m[2]] || m[2]);
